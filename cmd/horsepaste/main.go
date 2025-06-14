@@ -18,7 +18,7 @@ import (
 	"time"
 
 	"github.com/cockroachdb/pebble"
-	"github.com/jbowens/codenames"
+	"github.com/jbowens/horsepaste"
 	"github.com/pkg/errors"
 )
 
@@ -33,7 +33,7 @@ func main() {
 	flag.StringVar(&listenAddr, "listen-addr", defaultListenAddr,
 		"address for server to listen on")
 	flag.StringVar(&bootstrapURL, "bootstrap-url", "",
-		"URL of an existing codenames server to bootstrap the DB from")
+		"URL of an existing horsepaste server to bootstrap the DB from")
 
 	flag.Parse()
 
@@ -73,7 +73,7 @@ func main() {
 	}
 	defer db.Close()
 
-	ps := &codenames.PebbleStore{DB: db}
+	ps := &horsepaste.PebbleStore{DB: db}
 
 	// Delete any games created too long ago.
 	err = ps.DeleteExpired(time.Now().Add(expiryDur))
@@ -97,7 +97,7 @@ func main() {
 	}
 
 	log.Printf("[STARTUP] Listening on addr %s\n", listenAddr)
-	server := &codenames.Server{
+	server := &horsepaste.Server{
 		Server: http.Server{
 			Addr: listenAddr,
 		},
@@ -146,7 +146,7 @@ func bootstrap(bootstrapURL, dir string) error {
 	}
 	dec := gob.NewDecoder(gzr)
 	for {
-		var cf codenames.CheckpointFile
+		var cf horsepaste.CheckpointFile
 		err := dec.Decode(&cf)
 		if err == io.EOF {
 			break
@@ -162,7 +162,7 @@ func bootstrap(bootstrapURL, dir string) error {
 	return nil
 }
 
-func deleteExpiredPeriodically(ps *codenames.PebbleStore) {
+func deleteExpiredPeriodically(ps *horsepaste.PebbleStore) {
 	for range time.Tick(time.Hour) {
 		err := ps.DeleteExpired(time.Now().Add(expiryDur))
 		if err != nil {

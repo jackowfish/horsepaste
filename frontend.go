@@ -1,4 +1,4 @@
-package codenames
+package horsepaste
 
 import (
 	"math/rand"
@@ -11,7 +11,7 @@ const tpl = `
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Codenames - Play Online</title>
+        <title>Horsepaste - Play Online</title>
         <script src="/static/app.js?v=0.02" type="text/javascript"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/static/game.css" />

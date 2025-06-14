@@ -19,9 +19,9 @@ const settingToggles = [
     desc: 'Darken the mood.',
   },
   {
-    name: 'Spymaster may guess',
-    setting: 'spymasterMayGuess',
-    desc: 'When enabled, clicking a word from spymaster view reveals the word.',
+    name: 'Clue giver may guess',
+    setting: 'cluegiverMayGuess',
+    desc: 'When enabled, clicking a word from clue giver view reveals the word.',
   },
 ];
 

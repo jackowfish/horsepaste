@@ -89,7 +89,7 @@
   margin: 2px 8px 0;
 }
 
-#mode-toggle button.codemaster {
+#mode-toggle button.cluegiver {
   border-left: none;
   border-radius: 0 5px 5px 0;
   -moz-border-radius: 0 5px 5px 0;
@@ -103,7 +103,7 @@
 }
 
 #mode-toggle.player-selected button.player,
-#mode-toggle.codemaster-selected button.codemaster {
+#mode-toggle.cluegiver-selected button.cluegiver {
   cursor: auto;
   color: #999;
 }
@@ -148,17 +148,17 @@
   background: #e8e8e8;
 }
 
-.codemaster .red.hidden-word {
+.cluegiver .red.hidden-word {
   color: #d13030;
 }
-.codemaster .blue.hidden-word {
+.cluegiver .blue.hidden-word {
   color: #4183cc;
 }
-.codemaster .black.hidden-word {
+.cluegiver .black.hidden-word {
   background: #999;
   outline: 4px solid #000000;
 }
-.codemaster .cell {
+.cluegiver .cell {
   font-weight: bold;
 }
 
@@ -183,7 +183,7 @@
 .player .board.win > .cell.black.hidden-word {
   background: rgba(153, 153, 153, 0.4);
 }
-.dark-mode .codemaster .board.win > .cell.neutral {
+.dark-mode .cluegiver .board.win > .cell.neutral {
   color: #aaa;
 }
 
@@ -206,13 +206,13 @@
   border: 4px dashed #d13030;
 }
 
-.color-blind.codemaster .red.hidden-word,
+.color-blind.cluegiver .red.hidden-word,
 .color-blind .red.revealed {
   outline: 4px dashed #d13030;
   border: 1px solid white;
 }
 
-.color-blind.codemaster .blue.hidden-word,
+.color-blind.cluegiver .blue.hidden-word,
 .color-blind .blue.revealed {
   outline: 4px solid #4183cc;
   border: 1px solid white;
@@ -231,17 +231,17 @@
 .dark-mode .cell {
   background: rgb(117, 117, 117);
 }
-.dark-mode .codemaster .blue {
+.dark-mode .cluegiver .blue {
   color: rgb(13, 64, 123);
 }
-.dark-mode .codemaster .red {
+.dark-mode .cluegiver .red {
   color: rgb(140, 15, 15);
 }
-.dark-mode .codemaster .blue.revealed,
-.dark-mode .codemaster .red.revealed {
+.dark-mode .cluegiver .blue.revealed,
+.dark-mode .cluegiver .red.revealed {
   color: #fff;
 }
-.dark-mode .codemaster .black.hidden-word {
+.dark-mode .cluegiver .black.hidden-word {
   background: #444;
   outline: 4px solid #000000;
 }

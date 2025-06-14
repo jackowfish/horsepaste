@@ -17,7 +17,7 @@ export class Game extends React.Component {
       mounted: true,
       settings: Settings.load(),
       mode: 'game',
-      codemaster: false,
+      cluegiver: false,
     };
   }
 
@@ -105,7 +105,7 @@ export class Game extends React.Component {
 
   // Determines value of aria-disabled attribute to tell screen readers if word can be clicked.
   private cellDisabled(idx) {
-    if (this.state.codemaster && !this.state.settings.spymasterMayGuess) {
+    if (this.state.cluegiver && !this.state.settings.cluegiverMayGuess) {
       return true;
     } else if (this.state.game.revealed[idx]) {
       return true;
@@ -119,12 +119,12 @@ export class Game extends React.Component {
   private getCellAriaLabel(idx) {
     let ariaLabel = this.state.game.words[idx].toLowerCase();
     if (
-      this.state.codemaster ||
+      this.state.cluegiver ||
       this.state.game.winning_team ||
       this.state.game.revealed[idx]
     ) {
       let wordColor = this.state.game.layout[idx];
-      ariaLabel += ', ' + (wordColor === 'black' ? 'assassin' : wordColor);
+      ariaLabel += ', ' + (wordColor === 'black' ? 'bomb' : wordColor);
     }
     ariaLabel +=
       ', ' + (this.state.game.revealed[idx] ? 'revealed word' : 'hidden word');
@@ -151,7 +151,7 @@ export class Game extends React.Component {
         this.setState((oldState) => {
           const stateToUpdate = { game: data };
           if (oldState.game && data.created_at != oldState.game.created_at) {
-            stateToUpdate.codemaster = false;
+            stateToUpdate.cluegiver = false;
           }
           return stateToUpdate;
         });
@@ -165,13 +165,13 @@ export class Game extends React.Component {
 
   public toggleRole(e, role) {
     e.preventDefault();
-    this.setState({ codemaster: role == 'codemaster' });
+    this.setState({ cluegiver: role == 'cluegiver' });
   }
 
   public guess(e, idx) {
     e.preventDefault();
-    if (this.state.codemaster && !this.state.settings.spymasterMayGuess) {
-      return; // ignore if player is the codemaster
+    if (this.state.cluegiver && !this.state.settings.cluegiverMayGuess) {
+      return; // ignore if player is the cluegiver
     }
     if (this.state.game.revealed[idx]) {
       return; // ignore if already revealed
@@ -240,7 +240,7 @@ export class Game extends React.Component {
         enforce_timer: this.state.game.enforce_timer,
       })
       .then(({ data }) => {
-        this.setState({ game: data, codemaster: false });
+        this.setState({ game: data, cluegiver: false });
       });
   }
 
@@ -289,7 +289,7 @@ export class Game extends React.Component {
     }
 
     let endTurnButton;
-    if (!this.state.game.winning_team && !this.state.codemaster) {
+    if (!this.state.game.winning_team && !this.state.cluegiver) {
       endTurnButton = (
         <div id="end-turn-cont">
           <button
@@ -337,7 +337,7 @@ export class Game extends React.Component {
       <div
         id="game-view"
         className={
-          (this.state.codemaster ? 'codemaster' : 'player') +
+          (this.state.cluegiver ? 'cluegiver' : 'player') +
           this.extraClasses()
         }
       >
@@ -375,7 +375,7 @@ export class Game extends React.Component {
                 'cell ' +
                 this.state.game.layout[idx] +
                 ' ' +
-                (this.state.codemaster && !this.state.settings.spymasterMayGuess
+                (this.state.cluegiver && !this.state.settings.cluegiverMayGuess
                   ? 'disabled '
                   : '') +
                 (this.state.game.revealed[idx] ? 'revealed' : 'hidden-word')
@@ -396,7 +396,7 @@ export class Game extends React.Component {
         <form
           id="mode-toggle"
           className={
-            this.state.codemaster ? 'codemaster-selected' : 'player-selected'
+            this.state.cluegiver ? 'cluegiver-selected' : 'player-selected'
           }
           role="radiogroup"
         >
@@ -409,17 +409,17 @@ export class Game extends React.Component {
             onClick={(e) => this.toggleRole(e, 'player')}
             className="player"
             role="radio"
-            aria-checked={!this.state.codemaster}
+            aria-checked={!this.state.cluegiver}
           >
             Player
           </button>
           <button
-            onClick={(e) => this.toggleRole(e, 'codemaster')}
-            className="codemaster"
+            onClick={(e) => this.toggleRole(e, 'cluegiver')}
+            className="cluegiver"
             role="radio"
-            aria-checked={this.state.codemaster}
+            aria-checked={this.state.cluegiver}
           >
-            Spymaster
+            Clue giver
           </button>
           <button onClick={(e) => this.nextGame(e)} id="next-game-btn">
             Next game

@@ -1,4 +1,4 @@
-package codenames
+package horsepaste
 
 import (
 	"crypto/sha1"
