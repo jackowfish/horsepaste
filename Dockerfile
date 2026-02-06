@@ -7,9 +7,10 @@ RUN apk add gcc musl-dev \
 
 # Build frontend.
 FROM node:12-alpine as frontend
+RUN apk add --no-cache python3 make g++
 COPY . /app
 WORKDIR /app/frontend
-RUN npm install -g parcel-bundler \
+RUN npm install -g --unsafe-perm parcel-bundler \
     && npm install \
     && sh build.sh
 
