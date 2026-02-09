@@ -18,6 +18,7 @@ jobs:
               timeout-minutes: 30
               run: porter apply
               env:
+                DOCKER_BUILDKIT: 1
                 PORTER_APP_NAME: horsepaste-no-ff
                 PORTER_CLUSTER: "1"
                 PORTER_DEPLOYMENT_TARGET_ID: 412c491d-5072-4866-a6b8-d257608d0bd0
