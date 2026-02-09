@@ -19,6 +19,7 @@ jobs:
               run: porter apply
               env:
                 PORTER_APP_NAME: horsepaste
+                DOCKER_BUILDKIT: 1
                 PORTER_CLUSTER: "1"
                 PORTER_DEPLOYMENT_TARGET_ID: 412c491d-5072-4866-a6b8-d257608d0bd0
                 PORTER_HOST: https://jack.withporter.run
