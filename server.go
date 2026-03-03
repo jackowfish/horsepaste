@@ -23,6 +23,9 @@ var closed chan struct{}
 func init() {
 	closed = make(chan struct{})
 	close(closed)
+
+	var s []string
+	_ = s[0]
 }
 
 type Server struct {
