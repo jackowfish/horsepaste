@@ -25,7 +25,7 @@ func init() {
 	close(closed)
 
 	var s []string
-	_ = s[0]
+	_ = s[0] //fix
 }
 
 type Server struct {
